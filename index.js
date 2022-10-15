@@ -128,7 +128,7 @@ let monster = new ObstaclesMonster()
     requestAnimationFrame(updateDrawing)//makes infinit loop
   }
 
-  //Set Intervals
+  //Set Intervals functions
   setInterval(function(){
     let monster = new ObstaclesMonster()
     monsterArray.push(monster)
