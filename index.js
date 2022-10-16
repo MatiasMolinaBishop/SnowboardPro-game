@@ -7,16 +7,49 @@ window.onload = () => {
   
   //Creat / name our variables
   const canvas = document.getElementById('canvas')
-  canvas.width = 1000
-  canvas.height = 600
+  canvas.width = 1200 //1000
+  canvas.height = 600//600
   const canvasContext = canvas.getContext("2d")
   const imageBackGround = new Image()
-  imageBackGround.src ='images/backGround.jpeg'
+  imageBackGround.src ='images/moon.png' //TESTING CHANGED TO MOON IMG INSTEAD OF ORIGINAL
   const imageSkiPlayer = new Image()
-  imageSkiPlayer.src = 'images/ski1.png'
+  imageSkiPlayer.src = 'images/Character1.png'
   const imageSkiPlayer2 = new Image()
-  imageSkiPlayer2.src = 'images/ski2.jpeg'
-  
+  imageSkiPlayer2.src = 'images/Character2.png'
+
+  //Testing for back-ground image infinite loop
+  const imgTest = new Image()
+  imgTest.src = 'images/panoramic.jpeg'
+
+  class InfiniteLoop{
+    constructor(){
+
+        this.imgTest = imgTest,
+        this.x = 0,
+        //this.y = canvas.heighth/2,
+        this.speed = -1
+    }
+    move(){
+        this.x += this.speed;
+        this.x %= canvas.width;
+    }
+    draw(){
+        canvasContext.drawImage(this.imgTest, this.x, 0);
+        if (this.speed < 0) {
+          canvasContext.drawImage(this.imgTest, this.x + canvas.width, 0);
+        } else {
+          canvasContext.drawImage(this.imgTest, this.x - this.imgTest.width, 0);
+        }
+      }
+      updateCanvas(){
+        backgroundImage.move();
+        backgroundImage.draw();
+      }
+    }
+
+    let backgroundImage = new InfiniteLoop
+
+  //Testing for back-ground image infinite loop
 
   //Here we create our calsses and their methods
 
@@ -52,16 +85,22 @@ window.onload = () => {
         this.y = this.y - this.speed
     }
     moveDown(){
-        if(this.y > canvas.height){
+        if(this.y >= canvas.height-90){
             return
         }
         this.y = this.y + this.speed
     }
     jumpUpBrah(){
+        if(this.y <= 0){
+            return
+        }
         this.y = this.y  - this.jump
         //Need to somwhow make him comwdown
     }
     jumpDownBrah(){
+        if(this.y >= canvas.height - 90){
+            return
+        }
         this.y = this.y + this.jump
     }
   }
@@ -73,33 +112,30 @@ window.onload = () => {
 
     //Random objects Class MONSTERS 
     //NEED TO SET LIMITS LIKE THE BALL THAT MOVES ARUFN PING PONG BUT THIS ARE MPNSTERS AND WHEN THEY REACH THE END THE DESPEAR KEEP MOVING
-class ObstaclesMonster{
+class ObstaclesMonster{//use random at certain things here so that they behave diifferently
     constructor(){
         this.x = 0,
-        this.y =580,//WHY WHEN 590 OR MORE THE MONSTER STOPS MOVING ALONG Y AXIS?
+        this.yM =580,//WHY WHEN 590 OR MORE THE MONSTER STOPS MOVING ALONG Y AXIS?
         this.w = 10,
         this.h = 10,
-        this.speedY = 1,
-        this.speedX = 1
+        this.speedY = Math.random()*3,
+        this.speedX = Math.random()*3
     }
       drawMonster(){
-        this.y = this.y + this.speedY
-        this.x = this.x + this.speedX
-        canvasContext.fillStyle = 'red'
-        canvasContext.fillRect(this.x,this.y,this.w,this.h)
+        this.yM = this.yM + this.speedY //+ Math.random(),
+        this.x = this.x + this.speedX //+ Math.random(),
+        canvasContext.fillStyle = 'red',
+        canvasContext.fillRect(this.x,this.yM,this.w,this.h)
 //CODE FORM BALL ABOVE MODIFY
 //This makes MONSTER move up and down but also to the right 
 //It sets the limits of when to move up or down changing the objects speed
-        if (this.y >= canvas.height - 15){//DONT KNOW WHY I CANT MAKE THE BOUNDRY LESS THAN THE CANVAS HEIGHT
+        if (this.yM >= canvas.height - 15){//DONT KNOW WHY I CANT MAKE THE BOUNDRY LESS THAN THE CANVAS HEIGHT
             this.speedY = -this.speedY
         }
-        else if(this.y <= canvas.height/2){
+        else if(this.yM <= canvas.height/2){
             this.speedY = -this.speedY
         }
-
-        
-}
-}
+    }}
 
 let monsterArray = []
 
@@ -113,7 +149,33 @@ let monster = new ObstaclesMonster()
 
   function updateDrawing(){
     canvasContext.clearRect(0,0,canvas.width,canvas.height)//So the image doestn lag?
-    canvasContext.drawImage(imageBackGround, 0, 0, canvas.width, canvas.height)
+    //canvasContext.drawImage(imageBackGround, 0, 0, canvas.width, canvas.height) 
+
+    //Test infinite loop
+
+
+
+
+
+
+
+
+    backgroundImage.updateCanvas()
+
+
+
+
+    canvasContext.drawImage(imageBackGround, 500,200, canvas.width, canvas.height) 
+ 
+
+
+
+
+
+
+
+
+    //Test infinite loop
     
     characterMian.drawPlayer(imageSkiPlayer)//Calling charcater objecst method to draw image of character
 
@@ -132,7 +194,7 @@ let monster = new ObstaclesMonster()
   setInterval(function(){
     let monster = new ObstaclesMonster()
     monsterArray.push(monster)
-  }, 1000)
+  }, 3000)
 
   //EventListeners to make game live / reactive to the player's input
 

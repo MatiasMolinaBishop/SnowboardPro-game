@@ -1,0 +1,3 @@
+canvas {/*This will give us a boarder  for the canvas block of code  / graphic interface. Note calling the entire canvas element tag*/
+    border:1px solid black;
+}
