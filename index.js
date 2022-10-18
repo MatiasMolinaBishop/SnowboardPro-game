@@ -32,6 +32,17 @@ window.onload = () => {
   imgWorldOne.src = 'images/panoramic.jpeg'
   const imgDragonSphere = new Image()
   imgDragonSphere.src = 'images/esferaDragon.png'//chcek
+  const imgEnemy1 = new Image()
+  imgEnemy1.src  = 'images/enemy1.png'
+  const imgEnemy2 = new Image()
+  imgEnemy2.src  = 'images/enemy2.png'
+  const imgEnemy3 = new Image()
+  imgEnemy3.src  = 'images/enemy3.png'
+  const imgEnemy4 = new Image()
+  imgEnemy4.src  = 'images/enemy4.png'
+  const imgEnemy5 = new Image()
+  imgEnemy5.src  = 'images/enemy5.png'
+
   
 //INITIAL COUNTERS,CONDITIONS
     let playing = true
@@ -77,7 +88,7 @@ window.onload = () => {
         this.y = canvas.height/2 + 100,
         this.w = 80,
         this.h = 110,
-        this.speed = 25,
+        this.speed = 36,
         this.direction = 'left'
     }
     drawPlayer(character){//SOMEHOW MAKE IT SO THAT AT THE START YOU CAN CHOOSE DIFFERENT CHARACTERS
@@ -161,6 +172,28 @@ let attacksArrayTwo = []//TO BE FILLED WITH SECIND ATTACK
 
     }
   }
+  class Enemies{//CREATE ARRAY OF ENEMIES SAME PROPERTIES BUT CHANGE IMG AS ARGUMENT LOOP OVER ARRAY  OF ENEMIES TO HAVE THEM SHOW UP EVERY 15 SECONDS
+    constructor(img){
+        this.x = 0,
+        this.y = canvas.height/2,
+        this.w = 80,
+        this.h = 110,
+        this.speed = 20
+        this.img = img
+    }
+    drawEnemy(){
+        this.x = this.x + this.speed
+        canvasContext.drawImage(this.img, this.x, this.y, this.w, this.h)
+    }
+  }
+//NEED TO PUSH THEM INTO ARRAY SOMEHOE
+  let enemy1 = new Enemies()//INSERT IMAGE OG ENEMIES
+  let enemy2 = new Enemies()//INSERT IMAGE OG ENEMIES
+  let enemy3 = new Enemies()//INSERT IMAGE OG ENEMIES
+  let enemy4 = new Enemies()//INSERT IMAGE OG ENEMIES5
+
+  let enemiesArray =[enemy1, enemy2, enemy3, enemy4]//ITERATE THROUGH ARRAY ON UPDATE DRAWING FUNCTION WITH SET TIMER
+
 class Energy{//OBJECT THAT DISROY TO DISTROY / ENEMY
     constructor(active){
         this.x = 0,
