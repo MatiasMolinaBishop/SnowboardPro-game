@@ -26,8 +26,6 @@ window.onload = () => {
   imgGokuAttackRight.src = 'images/kamehamehaRight.png'
   const imgEnergyBall = new Image()
   imgEnergyBall.src = 'images/monsterEnery3.png'
-  const imgCharacter2 = new Image()
-  imgCharacter2.src = 'images/Character2.png'
   const imgWorldOne = new Image()
   imgWorldOne.src = 'images/panoramic.jpeg'
   const imgDragonSphere = new Image()
@@ -48,6 +46,8 @@ window.onload = () => {
     let playing = true
     let kills = 0//TO KEEP SCORE OF ENERGY BALLS DISTROYED
     let active = true
+    let balls = 0
+    let win = false
 
   //INSTANCE OBJECTS TOKENS AS IMGAES
     let goku = imgGokuLeft
@@ -132,7 +132,7 @@ window.onload = () => {
           (this.y + this.h > b.y)
       }
       attackOne(){
-        let attack = new Attack(kamehameha, this.x,this.y, this.direction)
+        let attack = new Attack(active, kamehameha, this.x,this.y, this.direction)
         attacksArrayOne.push(attack) 
       }
       attackTwo(){
@@ -141,14 +141,12 @@ window.onload = () => {
   }
 
   let characterMian = new Character();
-  let characterRandom = new Character();//FOR NOW ITS THE SAME CLASS. BUT WANT TO CALL IT WITH A ANOTHER CLASS SO THAT IT MPOVES ON ITS OWN.
-  //MOVES WITH AI. IF HE HITS SOMETHING ADD SOUNF FUCK!
 
-let attacksArrayOne = []
-let attacksArrayTwo = []//TO BE FILLED WITH SECIND ATTACK
+  let attacksArrayOne = []
+  let attacksArrayTwo = []//TO BE FILLED WITH SECIND ATTACK
 
   class Attack{
-    constructor(imgAttack,x, y, direction){
+    constructor(active, imgAttack,x, y, direction){
         this.x = x
         this.y = y
         this.w= 200
@@ -156,9 +154,11 @@ let attacksArrayTwo = []//TO BE FILLED WITH SECIND ATTACK
         this.speed = 5
         this.img = imgAttack
         this.direction = direction 
+        this.active = active
     }
 
     drawAttackOne(){
+        if(!this.active){return}// whne they collide this.active = false
         if(this.direction === 'left'){
             this.x = this.x - this.speed
             canvasContext.drawImage(this.img, this.x - 160, this.y, this.w, this.h)
@@ -175,24 +175,40 @@ let attacksArrayTwo = []//TO BE FILLED WITH SECIND ATTACK
   class Enemies{//CREATE ARRAY OF ENEMIES SAME PROPERTIES BUT CHANGE IMG AS ARGUMENT LOOP OVER ARRAY  OF ENEMIES TO HAVE THEM SHOW UP EVERY 15 SECONDS
     constructor(img){
         this.x = 0,
-        this.y = canvas.height/2,
+        //this.y = canvas.height/2,
+        this.y = Math.floor(Math.random()*500)
         this.w = 80,
         this.h = 110,
-        this.speed = 20
+        this.speedY = Math.ceil(Math.random()*3),
+        this.speedX = Math.ceil(Math.random()*3),
+        //this.speed = 2.5
         this.img = img
     }
     drawEnemy(){
-        this.x = this.x + this.speed
+
+        this.y = this.y + this.speedY //+ Math.random(),
+        this.x = this.x + this.speedX //+ Math.random(),
         canvasContext.drawImage(this.img, this.x, this.y, this.w, this.h)
+
+        if (this.y >= canvas.height - 15){
+            this.speedY = -this.speedY
+        }
+        else if(this.y <= canvas.height/2 - 200){
+            this.speedY = -this.speedY
+        }
+
+    
+
+
+
+
+
+        //this.x = this.x + this.speed
+        //canvasContext.drawImage(this.img, this.x, this.y, this.w, this.h)
     }
   }
-//NEED TO PUSH THEM INTO ARRAY SOMEHOE
-  let enemy1 = new Enemies()//INSERT IMAGE OG ENEMIES
-  let enemy2 = new Enemies()//INSERT IMAGE OG ENEMIES
-  let enemy3 = new Enemies()//INSERT IMAGE OG ENEMIES
-  let enemy4 = new Enemies()//INSERT IMAGE OG ENEMIES5
 
-  let enemiesArray =[enemy1, enemy2, enemy3, enemy4]//ITERATE THROUGH ARRAY ON UPDATE DRAWING FUNCTION WITH SET TIMER
+  let arrayEnemy1 = []
 
 class Energy{//OBJECT THAT DISROY TO DISTROY / ENEMY
     constructor(active){
@@ -264,35 +280,90 @@ class dragonBalls{//CHECK
     worldOne.updateCanvas()
    
     if(playing){
-        drawTimer()
-        drawKills()
+        drawScore()
+        dragonBallsCount()
         canvasContext.drawImage(imageBackGround, 500,200, canvas.width, canvas.height) 
-        characterRandom.drawPlayer(imgCharacter2)
-        characterMian.drawPlayer(goku)
+        characterMian.drawPlayer(goku) 
+        
+        for(let i=0; i<arrayEnemy1.length; i++){
+          arrayEnemy1[i].drawEnemy()//DRAW DRAGON BALLS
+      }
 
         for(let i=0; i<attacksArrayOne.length; i++){
             attacksArrayOne[i].drawAttackOne()
-            //if(energyArray[i].contains(attacksArrayOne[i])){//IDEA FORE EACH HERE TO LOOP THROUGH ENERGY ARRAY AND COMPARE
-                //ills = kills + 1 
-                //active = false
-            
+            for(let e=0; e < energyArray.length; e++) {
+              if(energyArray[e].contains(attacksArrayOne[i])){//IDEA FORE EACH HERE TO LOOP THROUGH ENERGY ARRAY AND COMPARE
+                //console.log('clolitionnn')
+                energyArray[e].active = false   //WHY GAME ENDS THERE IS A BUG
+                energyArray.splice(energyArray.indexOf(energyArray[e]), 1)
+                //attacksArrayOne[i].active = false //NOTE WHEN TRYONG TO MAKE FALSE CONDITION FOR KAMEHAMEHA I GET ERRORS CHECK WITH TEACHER LATER
+                //attacksArrayOne.splice(attacksArrayOne.indexOf(attacksArrayOne[i], 1))
+                kills += 1
+              }
+              //if (attacksArrayOne[i].active === false){
+                //attacksArrayOne.splice(attacksArrayOne.indexOf(attacksArrayOne[i], 1))
+              //}
+            }     
         }
-
         for(let i=0; i<dragonBallsArray.length; i++){
             dragonBallsArray[i].drawEnergy()//DRAW DRAGON BALLS
+            if(characterMian.contains(dragonBallsArray[i])){
+              dragonBallsArray[i].active = false
+              dragonBallsArray.splice(dragonBallsArray.indexOf(dragonBallsArray[i]),1)
+              balls ++
+              if(balls >= 1){
+                playing = false
+                win = true
+              }
+              //dragonBallsArray[i].splice()
+          }
         }
-
         for(let i=0; i<energyArray.length; i++){
             energyArray[i].drawEnergy()
             if(characterMian.contains(energyArray[i])){
                 playing = false
             }
           }
+    }else if(win === true){
+      winGame()
     }else{
         gameOver()
     }
     requestAnimationFrame(updateDrawing)//makes infinit loop
   }
+
+
+  //SET TIMEOUTS TO DRAW ENEMY CHARACTERS
+  setTimeout(function(){
+    let enemy2 = new Enemies(imgEnemy2)
+    arrayEnemy1.push(enemy2)
+  }, 11000)
+
+  setTimeout(function(){
+    let enemy1 = new Enemies(imgEnemy1)
+    arrayEnemy1.push(enemy1)
+  },24000)
+
+  setTimeout(function(){
+    let enemy3 = new Enemies(imgEnemy3)
+    arrayEnemy1.push(enemy3)
+  },39000)
+
+  setTimeout(function(){
+    let enemy4 = new Enemies(imgEnemy4)
+    arrayEnemy1.push(enemy4)
+  },46000)
+
+  setTimeout(function(){
+    let enemy5 = new Enemies(imgEnemy5)
+    arrayEnemy1.push(enemy5)
+  },60000)
+
+  // setTimeout(function(){
+  //   let enemy6 = new Enemies(imgEnemy6)                  GIANT FROM ATTACK ON TITAN BIG FUCKER
+  //   arrayEnemy1.push(enemy6)
+  // },80000)
+
 
   //SET INTERVAL FUNCTIONS
   setInterval(function(){
@@ -306,16 +377,17 @@ class dragonBalls{//CHECK
   }, 9000)
 
   //AUXILIARY FUNCTIONS
-  function drawTimer(){
+  function dragonBallsCount(){
     canvasContext.fillStyle = "white"
-    canvasContext.font = "40px Arial"
-    canvasContext.fillText('00:00', 70,70)
+    canvasContext.font = "30px Arial"
+    canvasContext.fillText('DRAGON BALLS:',70,70)
+    canvasContext.fillText(balls, 340,70)
   }
-  function drawKills(){
+  function drawScore(){
     canvasContext.fillStyle = "white"
-    canvasContext.font = "40px Arial"
-    canvasContext.fillText('POINTS:',1000,70)
-    canvasContext.fillText(kills, 1180,70)
+    canvasContext.font = "30px Arial"
+    canvasContext.fillText('ENEMIES KILLED:',70,110)
+    canvasContext.fillText(kills, 340,110)
   }
   function gameOver(){
     canvasContext.fillStyle = "white"
@@ -324,6 +396,16 @@ class dragonBalls{//CHECK
     canvasContext.fillStyle = "white"
     canvasContext.font = "16px Arial"
     canvasContext.fillText('CLICK ANYWHERE TO PLAY AGAIN',canvas.width/2-126,canvas.height/2+60)
+  }
+  function winGame(){
+    canvasContext.fillStyle = "white"
+    canvasContext.font = "40px Arial"
+    canvasContext.fillText('あなたが勝った!!', canvas.width/2-100,canvas.height/2+20)
+    canvasContext.fillStyle = "white"
+    canvasContext.fillText('MAKE YOUR WISH', canvas.width/2-120,canvas.height/2-40)
+    canvasContext.fillStyle = "white"
+    canvasContext.font = "16px Arial"
+    canvasContext.fillText('CLICK ANYWHERE TO PLAY AGAIN',canvas.width/2-85,canvas.height/2+60)
   }
 
   //EVENT LISTENERS
