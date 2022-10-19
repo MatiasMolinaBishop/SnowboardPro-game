@@ -8,14 +8,11 @@ window.onload = () => {
 //INITIAL CODE VARIABLES TEMPLATE
 
 const canvas = document.getElementById('canvas')
-canvas.width = 1250 
-canvas.height = 700
+canvas.width = 1400//1250 
+canvas.height = 800//700
 const canvasContext = canvas.getContext("2d")
 
 //IMAGE VARIBABLES 
-
-const imageBackGround = new Image()
-imageBackGround.src ='images/moon.png' 
 const imgGokuLeft = new Image()
 imgGokuLeft.src = 'images/gokuLeft.png'
 const imgGokuRight = new Image()
@@ -24,15 +21,22 @@ const imgGokuAttackLeft = new Image()
 imgGokuAttackLeft.src = 'images/kamehamehaLeft.png'
 const imgGokuAttackRight = new Image()
 imgGokuAttackRight.src = 'images/kamehamehaRight.png'
-
 const imgGokuAttack2 = new Image()
 imgGokuAttack2.src = 'images/imgPower2.png'
-
-
 const imgEnergyBall = new Image()
 imgEnergyBall.src = 'images/monsterEnery3.png'
 const imgWorldOne = new Image()
-imgWorldOne.src = 'images/panoramic.jpeg'
+imgWorldOne.src = 'images/panoramic3.png'
+const imgWorldTwo = new Image()
+imgWorldTwo.src = 'images/panoramic2.jpeg'
+const imgWorldThree= new Image()
+imgWorldThree.src = 'images/panoramic4.png'
+const imgWorldFour = new Image()
+imgWorldFour.src = 'images/panoramic5.jpeg'
+
+
+
+
 const imgDragonSphere = new Image()
 imgDragonSphere.src = 'images/esferaDragon.png'//chcek
 const imgEnemy1 = new Image()
@@ -90,7 +94,7 @@ class World{//SETS THE WOLRD BACKGROUND PARAMETER WORLD TO ALLOW DOM TO CHANGE I
     }
   }
 
-  let worldOne = new World(imgWorldOne) //NEW INSTANCE OBJECT OF CLASS WORLD
+  let worldOne = new World(imgWorldThree) //NEW INSTANCE OBJECT OF CLASS WORLD
   //TO CREATE ANOTHER WORLD FIND PANORAMIC IMG THAT WORKS AND CREATE INSTANCE OBJECT WITH THE IMG VARIALE AS ARGUMENT 
   //LATER CAN MANIPULATE WITH DOM TO CHANGE ONJECT CALLED UPON BY SUER INPPUT TO DISPLAY GAME
 
@@ -364,7 +368,6 @@ function updateDrawing(){
       drawScoreEnergy()
       dragonBallsCount()
       drawScoreEnemies()
-      canvasContext.drawImage(imageBackGround, 500,200, canvas.width, canvas.height) 
       characterMian.drawPlayer(goku) 
       
       for(let i=0; i<arrayEnemy1.length; i++){
@@ -398,7 +401,7 @@ function updateDrawing(){
               arrayEnemy1[e].w = 60
               arrayEnemy1[e].h = 90
 
-              if(arrayEnemy1[e].count >20){
+              if(arrayEnemy1[e].count >100){
                 arrayEnemy1[e].active = false   
                 arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[e]), 1)
                 killsEnemy += 1
@@ -422,7 +425,7 @@ function updateDrawing(){
             arrayEnemy1[e].w = 60
             arrayEnemy1[e].h = 90
 
-            if(arrayEnemy1[e].count >= 20){
+            if(arrayEnemy1[e].count >= 100){
               arrayEnemy1[e].active = false   
               arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[e]), 1)
               killsEnemy += 1

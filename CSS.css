@@ -1,7 +1,44 @@
 canvas {/*This will give us a boarder  for the canvas block of code  / graphic interface. Note calling the entire canvas element tag*/
     border:1px solid black;
+    align-content: center;
+    align-items: center;
 }
 
-.hidden{
+/* .hidden{
     display: none
+} */
+
+.modal-img{
+    width:500px;
 }
+.backGround-img{
+    width:500px;
+}
+body{
+    background:linear-gradient(to top left, #FFD372, #FF99D7);
+}
+header{
+    text-align: center;
+    font-size: 30px;
+  
+}
+span{
+    color: #CF0A0A;
+    margin:0;
+    padding:0;
+    height: 0;
+}
+#country{
+    color:#CF0A0A;
+    font-size: 40;
+}
+.flexWorlds{
+    display:flex;
+    flex-direction: row; /*default however writting it down to uderstan and possibly change*/
+    flex-wrap: wrap; /*default however writting it down to uderstan and possibly change*/
+    justify-content: space-between;
+    margin: 0;
+    padding:10px 300px 10px 300px;
+}
+
+

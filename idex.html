@@ -5,21 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
    <!--<link rel="stylesheet" href="styles/style.css" /> -->
-    <title>Shredding Braw</title>
+    <title>World Fighter 2.0</title>
 
     <link rel ="stylesheet" href="CSS.css">
   </head>
   <body>
-    <div class="game-intro">
-      <img src="./images/logo.png" alt="" class="logo-img" />
-      <br />
-      <button id="start-button">Time To Shred</button>
-    </div>
-
-    <div>
-      <canvas id="canvas"></canvas>
-    </div>
-
+    <header>
+      <br>
+      <br>
+      <br>
+      <h1>WORLD FIGHTER <span>2.0</span></h1>
+      <p><span>MADE BY NINTENDO </span><span id = "country">JAPAN</span> - BEST SELLER 2022</p>
+    </header>
+    <main>
+      <div>
+        <button id="rules-button">GAME RULES</button>
+        <br>
+        <button id="instructions-button">HOW TO PLAY</button>
+        <br>
+        <button id="reviews-button">USERS REVIEWS</button>
+        <section class=" modal hidden">
+          <button class="close-modal">x</button>
+          <h1>
+            RULES OF THE GAME:
+          </h1>
+          <P>
+            Simples, use your powers to distroy energy balls & kill your enemies. 
+            <br>
+            If you collect all 7 dragon balls you will win & a wish will be granted.
+            <br> 
+            Don't let energy balls nor enemies touch you. You will die.
+          </P>
+          <img class="modal-img" src="images/rules.png" alr="character rules">
+        </section>
+        <section class ="modal hidden">
+          <button class="close-modal">x</button>
+          <h1>
+            CONTROL CHARACTER WITH KEYBOARD:
+          </h1>
+          <P>
+            Use the keyboard arrows to move your character.
+            <br>
+            Use the Z and X keys to use your long range powers
+            <br>
+            Hover over dragon balls with your character to colletc them 
+          </P>
+          <img class = modal-img src="images/keyboard.png" alt="img of keyboard">
+        </section>
+        <section>
+          <button class = "close-modal">x</button>
+          <h1>
+            5 STAR REVIEWS. OVER 100K & COUNTNG
+          </h1>
+          <P>
+            Ashton Kutcher - <i>"OMG hadnt been this hooked on a game since Zelda came out"</i>
+            <br>
+            Donald Trump - <i>"Simply amazing"</i>
+            <br>
+            Paddy the Baddy - <i>"Helps me keep calm before my fights"</i>
+            <br>
+            Borat - <i>"My wife number one"</i>
+            <br>
+            Elon Musk - <i>I'll be playing this game in Mars</i>
+          </P>
+          <img class = modal-img src="images/magazine.png" alt="nintendo magazine img">
+        </section>
+        <h1>
+          CHOOSE WORLD TO PLAY IN
+        </h1>
+        <section class="flexWorlds">
+          <img class = modal-img src="images/panoramic5.jpeg" alt="WORLD1">
+          <img class = backGround-img src="images/panoramic2.jpeg" alt="WORLD 2">
+          <img class = backGround-img src="images/panoramic3.png" alt="WORLD 3">
+          <img class = backGround-img src="images/panoramic4.png" alt="WORLD 4">
+        </section>
+      </div>
+      <div class="overlay hidden"></div>
+    </main>
+    <footer>
+      <div class="game-intro">
+        <br/>
+        <button id="start-button">PLAY</button>
+        <br/>
+      </div>
+      <br>
+      <div>
+        <canvas id="canvas"></canvas>
+      </div>
+    </footer>
     <script src="index.js"></script>
   </body>
 </html>
