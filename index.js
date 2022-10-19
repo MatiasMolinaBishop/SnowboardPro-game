@@ -398,14 +398,25 @@ class dragonBalls{//CHECK
               
                 killsEnemy += 1
               } }
-            //   else if(arrayEnemy1[o].contains(attacksArrayOne[i])){
-            //     arrayEnemy1[o].active = false   
-            //     arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[o]), 1)
-          
-            //     killsEnemy += 1
-            // } 
-            }     
-        }//THIS DRAWS THE ATTACK2 AND IT CHECKS FOR COLLITIONS WITH ENERGY BALLS
+            for(let e=0; e < arrayEnemy1.length; e++) {
+                //let countEnemyHit = 0
+              if(arrayEnemy1[e].contains(attacksArrayOne[i])){
+                arrayEnemy1[e].count ++
+                arrayEnemy1[e].w = 60
+                arrayEnemy1[e].h = 90
+    
+                if(arrayEnemy1[e].count >= 2){
+                  arrayEnemy1[e].active = false   
+                  arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[e]), 1)
+                  killsEnemy += 1
+                  }
+                
+
+
+                }
+         
+            
+            }//THIS DRAWS THE ATTACK2 AND IT CHECKS FOR COLLITIONS WITH ENERGY BALLS
         for(let i=0; i<attacksArrayTwo.length; i++){
           attacksArrayTwo[i].drawAttackTwo()
           for(let e=0; e < energyArray.length; e++) {
@@ -469,7 +480,7 @@ class dragonBalls{//CHECK
                 playing = false
             }
           }
-    }else if(win === true){
+    }}}else if(win === true){
       dragonWish.drawDragon()
       winGame()
     }else{
