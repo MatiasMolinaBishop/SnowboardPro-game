@@ -24,6 +24,11 @@ window.onload = () => {
   imgGokuAttackLeft.src = 'images/kamehamehaLeft.png'
   const imgGokuAttackRight = new Image()
   imgGokuAttackRight.src = 'images/kamehamehaRight.png'
+
+  const imgGokuAttack2 = new Image()
+  imgGokuAttack2.src = 'images/imgPower2.png'
+
+  
   const imgEnergyBall = new Image()
   imgEnergyBall.src = 'images/monsterEnery3.png'
   const imgWorldOne = new Image()
@@ -40,18 +45,25 @@ window.onload = () => {
   imgEnemy4.src  = 'images/enemy4.png'
   const imgEnemy5 = new Image()
   imgEnemy5.src  = 'images/enemy5.png'
+  const imgDragon = new Image()
+  imgDragon.src  = 'images/dragon.png'
+  const imgGiant = new Image()
+  imgGiant.src  = 'images/titan.png'
 
   
 //INITIAL COUNTERS,CONDITIONS
     let playing = true
-    let kills = 0//TO KEEP SCORE OF ENERGY BALLS DISTROYED
+    let killsEnergy = 0//TO KEEP SCORE OF ENERGY BALLS DISTROYED
+    let killsEnemy = 0
     let active = true
     let balls = 0
     let win = false
+    let countEnemyHit = 0
 
   //INSTANCE OBJECTS TOKENS AS IMGAES
     let goku = imgGokuLeft
     let kamehameha = imgGokuAttackLeft
+    let power2 = imgGokuAttack2
 
   //CLASSES
   class World{//SETS THE WOLRD BACKGROUND PARAMETER WORLD TO ALLOW DOM TO CHANGE IMAGE WHEN SELECTING WORLDS
@@ -135,7 +147,12 @@ window.onload = () => {
         let attack = new Attack(active, kamehameha, this.x,this.y, this.direction)
         attacksArrayOne.push(attack) 
       }
+      //NEW CODE TETSING ATTACK 2
+      //When we press key [COMMAND] it calls on the characters method attackTwo which creates an instance of the attack taking
+      //the parameters specifed as arguemnts / constructors of the class Attack
       attackTwo(){
+        let attack2 = new Attack(active, power2, this.x,this.y, this.direction) 
+        attacksArrayTwo.push(attack2) 
 
       }
   }
@@ -143,20 +160,22 @@ window.onload = () => {
   let characterMian = new Character();
 
   let attacksArrayOne = []
-  let attacksArrayTwo = []//TO BE FILLED WITH SECIND ATTACK
+  let attacksArrayTwo = []//TO BE FILLED WITH SECOND ATTACK
 
   class Attack{
     constructor(active, imgAttack,x, y, direction){
         this.x = x
         this.y = y
         this.w= 200
+        this.w2 =80
         this.h = 130
+        this.h2 = 45
         this.speed = 5
         this.img = imgAttack
         this.direction = direction 
         this.active = active
+        this.speedY = 5
     }
-
     drawAttackOne(){
         if(!this.active){return}// whne they collide this.active = false
         if(this.direction === 'left'){
@@ -168,8 +187,25 @@ window.onload = () => {
             canvasContext.drawImage(this.img, this.x + 40, this.y, this.w, this.h)
         }
     }
+    contains(b){
+      return (this.x < b.x + b.w) &&
+        (this.x + this.w > b.x) &&
+        (this.y < b.y + b.h) &&
+        (this.y + this.h > b.y)
+    }
+    //method for diagonal attacks same as attack onw but adding a speed to the this.y position at the same time to make power move diagonally
     drawAttackTwo(){
-
+      if(!this.active){return}// whne they collide this.active = false
+      if(this.direction === 'left'){
+        this.x = this.x - this.speed
+        this.y = this.y + this.speedY
+        canvasContext.drawImage(this.img, this.x - 40, this.y+10, this.w2, this.h2)
+    }
+    else if(this.direction === 'right'){
+        this.x = this.x + this.speed
+        this.y = this.y + this.speedY
+        canvasContext.drawImage(this.img, this.x + 40, this.y+10, this.w2, this.h2)
+    }
     }
   }
   class Enemies{//CREATE ARRAY OF ENEMIES SAME PROPERTIES BUT CHANGE IMG AS ARGUMENT LOOP OVER ARRAY  OF ENEMIES TO HAVE THEM SHOW UP EVERY 15 SECONDS
@@ -177,12 +213,20 @@ window.onload = () => {
         this.x = 0,
         //this.y = canvas.height/2,
         this.y = Math.floor(Math.random()*500)
-        this.w = 80,
-        this.h = 110,
+        this.w = 100,
+        this.h = 130,
         this.speedY = Math.ceil(Math.random()*3),
         this.speedX = Math.ceil(Math.random()*3),
         //this.speed = 2.5
         this.img = img
+        this.active = true
+        this.count = 0
+    }
+    contains(b){
+      return (this.x < b.x + b.w) &&
+        (this.x + this.w > b.x) &&
+        (this.y < b.y + b.h) &&
+        (this.y + this.h > b.y)
     }
     drawEnemy(){
 
@@ -196,15 +240,6 @@ window.onload = () => {
         else if(this.y <= canvas.height/2 - 200){
             this.speedY = -this.speedY
         }
-
-    
-
-
-
-
-
-        //this.x = this.x + this.speed
-        //canvasContext.drawImage(this.img, this.x, this.y, this.w, this.h)
     }
   }
 
@@ -239,7 +274,6 @@ class Energy{//OBJECT THAT DISROY TO DISTROY / ENEMY
             this.speedY = -this.speedY
         }
     }}
-
 let energyArray = []
 
 class dragonBalls{//CHECK
@@ -265,8 +299,55 @@ class dragonBalls{//CHECK
             this.speedY = -this.speedY
         }
     }}
-
     let dragonBallsArray = []
+
+    class Giants{//CHECK
+      constructor(){
+          this.x = canvas.width,
+          this.y =200,
+          this.w = 600,
+          this.h = 600,
+          this.speedY = Math.random()*1.5,
+          this.speedX = Math.random()*1.5
+          this.active = true
+      }
+        drawGiant(){
+          this.y = this.y - this.speedY //+ Math.random(),
+          this.x = this.x - this.speedX //+ Math.random(),
+          canvasContext.drawImage(imgGiant, this.x, this.y, this.w, this.h)
+  
+          if (this.y > canvas.height - 100){
+              this.speedY = -this.speedY
+          }
+          else if(this.y <= canvas.height/2 - 200){
+              this.speedY = -this.speedY
+          }
+      }}
+      let giantsArray = []
+
+    class Dragon{//CHECK
+      constructor(){
+          this.x = 0,
+          this.y =0,
+          this.w = 500,
+          this.h = 500,
+          this.speedY = 0.3,
+          this.speedX = 0.1
+      }
+        drawDragon(){
+          this.y = this.y + this.speedY,
+          this.x = this.x + this.speedX,
+          canvasContext.drawImage(imgDragon, this.x, this.y, this.w, this.h)
+  
+          if (this.y > canvas.height - this.h){
+              this.speedY = -this.speedY
+          }
+          else if(this.y <= canvas.height/2 - 420){
+              this.speedY = -this.speedY
+          }
+      }}
+
+      let dragonWish = new Dragon()
 
 //Functions
 
@@ -280,38 +361,102 @@ class dragonBalls{//CHECK
     worldOne.updateCanvas()
    
     if(playing){
-        drawScore()
+        drawScoreEnergy()
         dragonBallsCount()
+        drawScoreEnemies()
         canvasContext.drawImage(imageBackGround, 500,200, canvas.width, canvas.height) 
         characterMian.drawPlayer(goku) 
         
         for(let i=0; i<arrayEnemy1.length; i++){
           arrayEnemy1[i].drawEnemy()//DRAW DRAGON BALLS
+          if(characterMian.contains(arrayEnemy1[i])){
+            playing = false
+        }
       }
 
+      for(let i=0; i<giantsArray.length; i++){
+        giantsArray[i].drawGiant()//DRAW DRAGON BALLS
+        if(characterMian.contains(giantsArray[i])){
+          playing = false
+      }
+    }
+//NEED TO CREATE A NEW ARRAY FOR ATTACK 2
         for(let i=0; i<attacksArrayOne.length; i++){
             attacksArrayOne[i].drawAttackOne()
             for(let e=0; e < energyArray.length; e++) {
               if(energyArray[e].contains(attacksArrayOne[i])){//IDEA FORE EACH HERE TO LOOP THROUGH ENERGY ARRAY AND COMPARE
-                //console.log('clolitionnn')
+        
                 energyArray[e].active = false   //WHY GAME ENDS THERE IS A BUG
                 energyArray.splice(energyArray.indexOf(energyArray[e]), 1)
-                //attacksArrayOne[i].active = false //NOTE WHEN TRYONG TO MAKE FALSE CONDITION FOR KAMEHAMEHA I GET ERRORS CHECK WITH TEACHER LATER
-                //attacksArrayOne.splice(attacksArrayOne.indexOf(attacksArrayOne[i], 1))
-                kills += 1
+        
+                killsEnergy += 1
               }
-              //if (attacksArrayOne[i].active === false){
-                //attacksArrayOne.splice(attacksArrayOne.indexOf(attacksArrayOne[i], 1))
-              //}
+            for(let e=0; e < arrayEnemy1.length; e++) {
+              if(arrayEnemy1[e].contains(attacksArrayOne[i])){
+                arrayEnemy1[e].active = false   
+                arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[e]), 1)
+              
+                killsEnemy += 1
+              } }
+            //   else if(arrayEnemy1[o].contains(attacksArrayOne[i])){
+            //     arrayEnemy1[o].active = false   
+            //     arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[o]), 1)
+          
+            //     killsEnemy += 1
+            // } 
             }     
-        }
+        }//THIS DRAWS THE ATTACK2 AND IT CHECKS FOR COLLITIONS WITH ENERGY BALLS
+        for(let i=0; i<attacksArrayTwo.length; i++){
+          attacksArrayTwo[i].drawAttackTwo()
+          for(let e=0; e < energyArray.length; e++) {
+            if(energyArray[e].contains(attacksArrayTwo[i])){
+              energyArray[e].active = false   
+              energyArray.splice(energyArray.indexOf(energyArray[e]), 1)
+        
+              killsEnergy += 1
+            }
+          for(let e=0; e < arrayEnemy1.length; e++) {
+            //let countEnemyHit = 0
+            if(arrayEnemy1[e].contains(attacksArrayTwo[i])){
+              arrayEnemy1[e].count ++
+              arrayEnemy1[e].w = 60
+              arrayEnemy1[e].h = 90
+
+              if(arrayEnemy1[e].count >= 2){
+                arrayEnemy1[e].active = false   
+                arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[e]), 1)
+                killsEnemy += 1
+              }
+
+              //arrayEnemy1[e].active = false   
+              //arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[e]), 1)
+          
+              //killsEnemy += 1
+            } }
+
+
+
+
+
+
+
+
+
+
+          //   else if(arrayEnemy1[o].contains(attacksArrayTwo[i])){
+          //     arrayEnemy1[o].active = false   
+          //     arrayEnemy1.splice(arrayEnemy1.indexOf(arrayEnemy1[o]), 1)
+        
+          //     killsEnemy += 1
+          // }     //HEREREREREREHHJFHGJKDJKGDKJGNGNKNGJKERNFJAENFKWNFOENGFONJFNJFNGRJEKGRGBDBGKRBGHIRJIGNERK;GNejkrngrebghierbgirae
+      }}
         for(let i=0; i<dragonBallsArray.length; i++){
             dragonBallsArray[i].drawEnergy()//DRAW DRAGON BALLS
             if(characterMian.contains(dragonBallsArray[i])){
               dragonBallsArray[i].active = false
               dragonBallsArray.splice(dragonBallsArray.indexOf(dragonBallsArray[i]),1)
               balls ++
-              if(balls >= 1){
+              if(balls >= 7){
                 playing = false
                 win = true
               }
@@ -325,6 +470,7 @@ class dragonBalls{//CHECK
             }
           }
     }else if(win === true){
+      dragonWish.drawDragon()
       winGame()
     }else{
         gameOver()
@@ -376,6 +522,16 @@ class dragonBalls{//CHECK
     dragonBallsArray.push(dragonBall)
   }, 9000)
 
+  // setTimeout(function(){
+  //   let giant = new Giants()
+  //   giantsArray.push(giant)
+  // },1000)
+
+  setInterval(function(){
+    let giant = new Giants()
+    giantsArray.push(giant)
+  }, 120000)
+
   //AUXILIARY FUNCTIONS
   function dragonBallsCount(){
     canvasContext.fillStyle = "white"
@@ -383,11 +539,17 @@ class dragonBalls{//CHECK
     canvasContext.fillText('DRAGON BALLS:',70,70)
     canvasContext.fillText(balls, 340,70)
   }
-  function drawScore(){
+  function drawScoreEnergy(){
     canvasContext.fillStyle = "white"
     canvasContext.font = "30px Arial"
-    canvasContext.fillText('ENEMIES KILLED:',70,110)
-    canvasContext.fillText(kills, 340,110)
+    canvasContext.fillText('ENERGY BALLS:',70,110)
+    canvasContext.fillText(killsEnergy, 340,110)
+  }
+  function drawScoreEnemies(){
+    canvasContext.fillStyle = "white"
+    canvasContext.font = "30px Arial"
+    canvasContext.fillText('ENEMIES KILLED:',70,150)
+    canvasContext.fillText(killsEnemy, 340,150)
   }
   function gameOver(){
     canvasContext.fillStyle = "white"
@@ -426,13 +588,15 @@ class dragonBalls{//CHECK
         //move down
         characterMian.moveDown()
     }
-    else if(e.keyCode ===18){
+    else if(e.keyCode ===88){
         characterMian.attackOne()
+    }
+    else if(e.keyCode ===90){//TO COMPLETE
+      characterMian.attackTwo()
     }
   })
 //TO PLAY AGAIN DIFFICULT LEAVE FOR THR END
   document.getElementById('canvas').onclick = () => {
     playing = true
     canvasContext.clearRect(0,0,canvas.width, canvas.height)
-
   };
