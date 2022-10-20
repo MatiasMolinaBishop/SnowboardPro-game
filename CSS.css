@@ -1,26 +1,46 @@
 canvas {/*This will give us a boarder  for the canvas block of code  / graphic interface. Note calling the entire canvas element tag*/
-    border:1px solid black;
     align-content: center;
     align-items: center;
 }
 
-/* .hidden{
+ .hidden{
     display: none
-} */
+}  
 
 .modal-img{
     width:500px;
+    border-radius: 2rem;
+}
+.modal-img-sneaky{
+    width:900px;
+    border-radius: 2rem;
+}
+
+.modal-img-flex{
+    display:flex;
+    flex-direction: row; /*default however writting it down to uderstan and possibly change*/
+    flex-wrap: wrap; /*default however writting it down to uderstan and possibly change*/
+    justify-content: center;
+    margin: 0;
+    padding:10px 300px 10px 300px;
+    gap:40px
 }
 .backGround-img{
     width:500px;
 }
 body{
     background:linear-gradient(to top left, #FFD372, #FF99D7);
+    color:#333;
 }
 header{
     text-align: center;
     font-size: 30px;
-  
+}
+main{
+    text-align: center;
+}
+footer{
+    text-align: center;
 }
 span{
     color: #CF0A0A;
@@ -36,9 +56,69 @@ span{
     display:flex;
     flex-direction: row; /*default however writting it down to uderstan and possibly change*/
     flex-wrap: wrap; /*default however writting it down to uderstan and possibly change*/
-    justify-content: space-between;
+    justify-content: center;
     margin: 0;
     padding:10px 300px 10px 300px;
+    gap:40px;
 }
 
+.show-modal{
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1.75rem 3.5rem;
+    margin: 5rem 2rem;
+    border: none;
+    background-color: #fff;
+    color: #444;
+    border-radius: 10rem;
+    cursor: pointer;
+  }
 
+.close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 2rem;
+    font-size: 5rem;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+  
+    background-color: white;
+    padding: 6rem;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+  }
+  #start-button{
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1.75rem 3.5rem;
+    margin: 5rem 2rem;
+    border: none;
+    background-color: #fff;
+    color: #444;
+    border-radius: 10rem;
+    cursor: pointer;
+  }
+  
+  .selected{
+    border: solid;
+  }

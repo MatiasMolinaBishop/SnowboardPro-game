@@ -19,12 +19,11 @@
     </header>
     <main>
       <div>
-        <button id="rules-button">GAME RULES</button>
-        <br>
-        <button id="instructions-button">HOW TO PLAY</button>
-        <br>
-        <button id="reviews-button">USERS REVIEWS</button>
-        <section class=" modal hidden">
+        <button class="show-modal">GAME RULES</button>
+        <button class="show-modal">HOW TO PLAY</button>
+        <button class="show-modal">REVIEWS</button>
+        <button class="show-modal">PREVIEW</button>
+        <section class="modal hidden">
           <button class="close-modal">x</button>
           <h1>
             RULES OF THE GAME:
@@ -38,7 +37,7 @@
           </P>
           <img class="modal-img" src="images/rules.png" alr="character rules">
         </section>
-        <section class ="modal hidden">
+        <section class="modal hidden">
           <button class="close-modal">x</button>
           <h1>
             CONTROL CHARACTER WITH KEYBOARD:
@@ -52,10 +51,10 @@
           </P>
           <img class = modal-img src="images/keyboard.png" alt="img of keyboard">
         </section>
-        <section>
+        <section class = "modal hidden">
           <button class = "close-modal">x</button>
           <h1>
-            5 STAR REVIEWS. OVER 100K & COUNTNG
+             REVIEWS. OVER 100K & COUNTNG
           </h1>
           <P>
             Ashton Kutcher - <i>"OMG hadnt been this hooked on a game since Zelda came out"</i>
@@ -70,14 +69,32 @@
           </P>
           <img class = modal-img src="images/magazine.png" alt="nintendo magazine img">
         </section>
+        <section class = "modal hidden">
+          <button class = "close-modal">x</button>
+          <h1>
+             SNEACKY PREVIEW / ADVANCE
+          </h1>
+          <br>
+          <br>
+          <p>You can choose different worlds</p>
+          <br>
+          <p>If you can last longer than a minute you'll get a round with the baddest</p>
+          <br>
+          <p>Thats what she said</p>
+          <div class="modal-img-flex"></div>
+          <img class="modal-img-sneaky" src="images/sneaky4.png" alt="game screenshot 4">
+          </div>
+        </section>
         <h1>
           CHOOSE WORLD TO PLAY IN
         </h1>
+        <br>
+        <br>
         <section class="flexWorlds">
-          <img class = modal-img src="images/panoramic5.jpeg" alt="WORLD1">
-          <img class = backGround-img src="images/panoramic2.jpeg" alt="WORLD 2">
-          <img class = backGround-img src="images/panoramic3.png" alt="WORLD 3">
-          <img class = backGround-img src="images/panoramic4.png" alt="WORLD 4">
+          <img class = "modal-img selected" src="images/panoramic5.jpeg" alt="WORLD1">
+          <img class = "modal-img" src="images/panoramic2.jpeg" alt="WORLD 2">
+          <img class = "modal-img" src="images/panoramic3.png" alt="WORLD 3">
+          <img class = "modal-img" src="images/panoramic4.png" alt="WORLD 4">
         </section>
       </div>
       <div class="overlay hidden"></div>
@@ -90,7 +107,7 @@
       </div>
       <br>
       <div>
-        <canvas id="canvas"></canvas>
+        <canvas class="hidden" id="canvas"></canvas>
       </div>
     </footer>
     <script src="index.js"></script>

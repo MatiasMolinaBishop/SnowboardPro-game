@@ -2,8 +2,66 @@
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
     startGame();
+    console.log("reeaefsadf")
+    canvas.classList.remove("hidden")
+    mainBody.classList.add("hidden")
+    headerBody.classList.add("hidden")
+    document.getElementById('start-button').classList.add("hidden")
+
+    
   };
 }
+//____________DOM RELATED____________//
+
+const modal = document.querySelectorAll(".modal");
+const overlay = document.querySelector(".overlay");
+const closeButton = document.querySelectorAll(".close-modal")
+const btns = document.querySelectorAll(".show-modal")
+const play = document.getElementById("start-button")
+const mainBody = document.querySelector("main")
+const headerBody = document.querySelector("header")
+const wolrd1img = document.querySelectorAll(".flexWorlds img")
+
+
+
+
+const openModal = (index) => {
+  modal[index].classList.remove("hidden")
+  overlay.classList.remove("hidden")
+
+  setTimeout(() => {
+    closeModal(index)
+  }, 10000);
+}
+const closeModal = (index) => {
+  modal[index].classList.add("hidden")
+  overlay.classList.add("hidden")
+}
+for (let i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", () => {
+    openModal(i);
+  })
+  closeButton[i].addEventListener("click", () => {
+    closeModal(i);
+  })
+
+  overlay.addEventListener("click", () => {
+    closeModal(i);
+  })
+}
+// document.addEventListener("keydown", (event) => {
+//   // console.log(event.key)
+//   if (event.key === "Escape") {
+//     closeModal();
+//   }
+// })
+
+
+
+
+
+
+//____________GAME RELATED____________//
 
 //INITIAL CODE VARIABLES TEMPLATE
 
@@ -28,11 +86,11 @@ imgEnergyBall.src = 'images/monsterEnery3.png'
 const imgWorldOne = new Image()
 imgWorldOne.src = 'images/panoramic3.png'
 const imgWorldTwo = new Image()
-imgWorldTwo.src = 'images/panoramic2.jpeg'
-const imgWorldThree= new Image()
-imgWorldThree.src = 'images/panoramic4.png'
-const imgWorldFour = new Image()
-imgWorldFour.src = 'images/panoramic5.jpeg'
+// imgWorldTwo.src = 'images/panoramic2.jpeg'
+// const imgWorldThree= new Image()
+// imgWorldThree.src = 'images/panoramic4.png'
+// const imgWorldFour = new Image()
+// imgWorldFour.src = 'images/panoramic5.jpeg'
 
 
 
@@ -94,7 +152,17 @@ class World{//SETS THE WOLRD BACKGROUND PARAMETER WORLD TO ALLOW DOM TO CHANGE I
     }
   }
 
-  let worldOne = new World(imgWorldThree) //NEW INSTANCE OBJECT OF CLASS WORLD
+  let worldOne = new World(imgWorldOne)
+  let selectedIndex = 0
+  wolrd1img.forEach((image, index) =>{
+    image.addEventListener("click", () => {
+      wolrd1img[selectedIndex].classList.remove("selected")
+      worldOne = new World(image)
+      image.classList.add("selected")
+      selectedIndex = index
+    })
+  })
+   //NEW INSTANCE OBJECT OF CLASS WORLD
   //TO CREATE ANOTHER WORLD FIND PANORAMIC IMG THAT WORKS AND CREATE INSTANCE OBJECT WITH THE IMG VARIALE AS ARGUMENT 
   //LATER CAN MANIPULATE WITH DOM TO CHANGE ONJECT CALLED UPON BY SUER INPPUT TO DISPLAY GAME
 
