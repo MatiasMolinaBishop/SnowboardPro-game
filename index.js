@@ -425,6 +425,47 @@ class dragonBalls{//CHECK
 //Functions
 
 function startGame() {
+  setTimeout(function(){
+    let enemy2 = new Enemies(imgEnemy2)
+    arrayEnemy1.push(enemy2)
+  }, 11000)
+  
+  setTimeout(function(){
+    let enemy1 = new Enemies(imgEnemy1)
+    arrayEnemy1.push(enemy1)
+  },24000)
+  
+  setTimeout(function(){
+    let enemy3 = new Enemies(imgEnemy3)
+    arrayEnemy1.push(enemy3)
+  },39000)
+  
+  setTimeout(function(){
+    let enemy4 = new Enemies(imgEnemy4)
+    arrayEnemy1.push(enemy4)
+  },46000)
+  
+  setTimeout(function(){
+    let enemy5 = new Enemies(imgEnemy5)
+    arrayEnemy1.push(enemy5)
+  },60000)
+  
+  //SET INTERVAL FUNCTIONS
+  setInterval(function(){
+    let energy = new Energy(active)
+    energyArray.push(energy)
+  }, 3000)
+  
+  setInterval(function(){
+    let dragonBall = new dragonBalls()
+    dragonBallsArray.push(dragonBall)
+  }, 9000)
+  
+  setInterval(function(){
+    let giant = new Giants()
+    giantsArray.push(giant)
+  }, 60000)
+
   updateDrawing()
 }
 function updateDrawing(){
@@ -531,46 +572,46 @@ function updateDrawing(){
 
 
 //SET TIMEOUTS TO DRAW ENEMY CHARACTERS
-setTimeout(function(){
-  let enemy2 = new Enemies(imgEnemy2)
-  arrayEnemy1.push(enemy2)
-}, 11000)
+// setTimeout(function(){
+//   let enemy2 = new Enemies(imgEnemy2)
+//   arrayEnemy1.push(enemy2)
+// }, 11000)
 
-setTimeout(function(){
-  let enemy1 = new Enemies(imgEnemy1)
-  arrayEnemy1.push(enemy1)
-},24000)
+// setTimeout(function(){
+//   let enemy1 = new Enemies(imgEnemy1)
+//   arrayEnemy1.push(enemy1)
+// },24000)
 
-setTimeout(function(){
-  let enemy3 = new Enemies(imgEnemy3)
-  arrayEnemy1.push(enemy3)
-},39000)
+// setTimeout(function(){
+//   let enemy3 = new Enemies(imgEnemy3)
+//   arrayEnemy1.push(enemy3)
+// },39000)
 
-setTimeout(function(){
-  let enemy4 = new Enemies(imgEnemy4)
-  arrayEnemy1.push(enemy4)
-},46000)
+// setTimeout(function(){
+//   let enemy4 = new Enemies(imgEnemy4)
+//   arrayEnemy1.push(enemy4)
+// },46000)
 
-setTimeout(function(){
-  let enemy5 = new Enemies(imgEnemy5)
-  arrayEnemy1.push(enemy5)
-},60000)
+// setTimeout(function(){
+//   let enemy5 = new Enemies(imgEnemy5)
+//   arrayEnemy1.push(enemy5)
+// },60000)
 
-//SET INTERVAL FUNCTIONS
-setInterval(function(){
-  let energy = new Energy(active)
-  energyArray.push(energy)
-}, 3000)
+// //SET INTERVAL FUNCTIONS
+// setInterval(function(){
+//   let energy = new Energy(active)
+//   energyArray.push(energy)
+// }, 3000)
 
-setInterval(function(){
-  let dragonBall = new dragonBalls()
-  dragonBallsArray.push(dragonBall)
-}, 9000)
+// setInterval(function(){
+//   let dragonBall = new dragonBalls()
+//   dragonBallsArray.push(dragonBall)
+// }, 9000)
 
-setInterval(function(){
-  let giant = new Giants()
-  giantsArray.push(giant)
-}, 60000)
+// setInterval(function(){
+//   let giant = new Giants()
+//   giantsArray.push(giant)
+// }, 60000)
 
 //AUXILIARY FUNCTIONS
 function dragonBallsCount(){
