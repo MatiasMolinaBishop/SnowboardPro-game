@@ -72,45 +72,45 @@ const canvasContext = canvas.getContext("2d")
 
 //IMAGE VARIBABLES 
 const imgGokuLeft = new Image()
-imgGokuLeft.src = './images/gokuLeft.png'
+imgGokuLeft.src = './Images/gokuLeft.png'
 const imgGokuRight = new Image()
-imgGokuRight.src = './images/gokuRight.png'
+imgGokuRight.src = './Images/gokuRight.png'
 const imgGokuAttackLeft = new Image()
-imgGokuAttackLeft.src = './images/kamehamehaLeft.png'
+imgGokuAttackLeft.src = './Images/kamehamehaLeft.png'
 const imgGokuAttackRight = new Image()
-imgGokuAttackRight.src = './images/kamehamehaRight.png'
+imgGokuAttackRight.src = './Images/kamehamehaRight.png'
 const imgGokuAttack2 = new Image()
-imgGokuAttack2.src = './images/imgPower2.png'
+imgGokuAttack2.src = './Images/imgPower2.png'
 const imgEnergyBall = new Image()
-imgEnergyBall.src = './images/monsterEnery3.png'
+imgEnergyBall.src = './Images/monsterEnery3.png'
 const imgWorldOne = new Image()
-imgWorldOne.src = './images/panoramic3.png'
+imgWorldOne.src = './Images/panoramic3.png'
 const imgWorldTwo = new Image()
-// imgWorldTwo.src = './images/panoramic2.jpeg'
+// imgWorldTwo.src = './Images/panoramic2.jpeg'
 // const imgWorldThree= new Image()
-// imgWorldThree.src = './images/panoramic4.png'
+// imgWorldThree.src = './Images/panoramic4.png'
 // const imgWorldFour = new Image()
-// imgWorldFour.src = './images/panoramic5.jpeg'
+// imgWorldFour.src = './Images/panoramic5.jpeg'
 
 
 
 
 const imgDragonSphere = new Image()
-imgDragonSphere.src = './images/esferaDragon.png'//chcek
+imgDragonSphere.src = './Images/esferaDragon.png'//chcek
 const imgEnemy1 = new Image()
-imgEnemy1.src  = './images/enemy1.png'
+imgEnemy1.src  = './Images/enemy1.png'
 const imgEnemy2 = new Image()
-imgEnemy2.src  = './images/enemy2.png'
+imgEnemy2.src  = './Images/enemy2.png'
 const imgEnemy3 = new Image()
-imgEnemy3.src  = './images/enemy3.png'
+imgEnemy3.src  = './Images/enemy3.png'
 const imgEnemy4 = new Image()
-imgEnemy4.src  = './images/enemy4.png'
+imgEnemy4.src  = './Images/enemy4.png'
 const imgEnemy5 = new Image()
-imgEnemy5.src  = './images/enemy5.png'
+imgEnemy5.src  = './Images/enemy5.png'
 const imgDragon = new Image()
-imgDragon.src  = './images/dragon.png'
+imgDragon.src  = './Images/dragon.png'
 const imgGiant = new Image()
-imgGiant.src  = './images/titan.png'
+imgGiant.src  = './Images/titan.png'
 
 
 //INITIAL COUNTERS,CONDITIONS
