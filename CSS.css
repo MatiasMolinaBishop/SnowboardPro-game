@@ -60,6 +60,7 @@ span{
     margin: 0;
     padding:10px 300px 10px 300px;
     gap:40px;
+    cursor: pointer;
 }
 
 .show-modal{

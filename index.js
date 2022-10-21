@@ -67,7 +67,7 @@ for (let i = 0; i < btns.length; i++) {
 
 const canvas = document.getElementById('canvas')
 canvas.width = 1400//1250 
-canvas.height = 800//700
+canvas.height = 700//700
 const canvasContext = canvas.getContext("2d")
 
 //IMAGE VARIBABLES 
