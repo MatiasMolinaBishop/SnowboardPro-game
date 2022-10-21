@@ -57,8 +57,7 @@ for (let i = 0; i < btns.length; i++) {
 // })
 
 
-
-
+// testing branch
 
 
 //____________GAME RELATED____________//
@@ -69,6 +68,8 @@ const canvas = document.getElementById('canvas')
 canvas.width = 1400//1250 
 canvas.height = 700//700
 const canvasContext = canvas.getContext("2d")
+
+
 
 //IMAGE VARIBABLES 
 const imgGokuLeft = new Image()
