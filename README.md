@@ -1,5 +1,5 @@
 # WORLD FIGHTER 2.0 - game
-Developed with js &amp; canvas.
+Developed with JavaScript &amp; canvas.
 
 Suitable for all browsers.
 
@@ -7,15 +7,15 @@ Developed for learning & fun purposes.
 
 # INTRODUCTION
 
-World Fighter 2.0 was originally developed for a class project. However, while working on the game, I enjoyed the process so much.
+World Fighter 2.0 was originally developed for a class project.
 
-that  I viewed it as a perosnal fun side activity. 
+This game features many of the all time favorite anime characters as they fight across different worlds to try and stop our main character form collecting all 7 dragon balls. 
 
-The game has many features. Nevertheless, the posibilities for further development are infinite. 
+As a user you can select between 4 different worlds to play in. Move in all directions and throw powers to defeat enemies and collect dragon balls.
 
 
 # What you need to know:
-This is rated PG13 and therefore should not be played by childre under the age of 13 without consent of their legal guardians.
+This is rated PG13 and therefore should not be played by children under the age of 13 without consent of their legal guardians.
 
 Key boards assciated with main characters mobility might differ from PC tp PC according to its keyboards main language.
 
