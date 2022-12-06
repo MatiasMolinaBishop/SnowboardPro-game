@@ -1,5 +1,5 @@
 # WORLD FIGHTER 2.0 - game
-Developed with js &amp; canvas.
+Developed with JavaScript &amp; canvas.
 
 Suitable for all browsers.
 
