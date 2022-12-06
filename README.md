@@ -15,7 +15,7 @@ The game has many features. Nevertheless, the posibilities for further developme
 
 
 # What you need to know:
-This is rated PG13 and therefore should not be played by childre under the age of 13 without consent of their legal guardians.
+This is rated PG13 and therefore should not be played by children under the age of 13 without consent of their legal guardians.
 
 Key boards assciated with main characters mobility might differ from PC tp PC according to its keyboards main language.
 
