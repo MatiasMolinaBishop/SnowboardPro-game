@@ -8,12 +8,17 @@ canvas {/*This will give us a boarder  for the canvas block of code  / graphic i
 }  
 
 .modal-img{
-    width:200px;
+    width:500px;
     border-radius: 2rem;
 }
 .modal-img-sneaky{
     width:500px;
     border-radius: 2rem;
+}
+.modal-imgMario{
+    width:300px;
+    border-radius: 2rem;
+
 }
 
 .modal-img-flex{
