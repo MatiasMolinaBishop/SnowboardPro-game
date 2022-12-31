@@ -1,74 +1,89 @@
-canvas {/*This will give us a boarder  for the canvas block of code  / graphic interface. Note calling the entire canvas element tag*/
+canvas {
+    /*This will give us a boarder  for the canvas block of code  / graphic interface. Note calling the entire canvas element tag*/
     align-content: center;
     align-items: center;
 }
 
- .hidden{
+.hidden {
     display: none
-}  
-
-.modal-img{
-    width:400px;
-    border-radius: 2rem;
-}
-.modal-img-sneaky{
-    width:500px;
-    border-radius: 2rem;
-}
-.modal-imgMario{
-    width:300px;
-    border-radius: 2rem;
-
 }
 
-.modal-img-flex{
-    display:flex;
-    flex-direction: row; /*default however writting it down to uderstan and possibly change*/
-    flex-wrap: wrap; /*default however writting it down to uderstan and possibly change*/
+.modal-img {
+    width: 400px;
+    border-radius: 2rem;
+}
+
+.modal-img-sneaky {
+    width: 500px;
+    border-radius: 2rem;
+}
+
+.modal-imgMario {
+    width: 300px;
+    border-radius: 2rem;
+
+}
+
+.modal-img-flex {
+    display: flex;
+    flex-direction: row;
+    /*default however writting it down to uderstan and possibly change*/
+    flex-wrap: wrap;
+    /*default however writting it down to uderstan and possibly change*/
     justify-content: center;
     margin: 0;
-    padding:10px 300px 10px 300px;
-    gap:40px
+    padding: 10px 300px 10px 300px;
+    gap: 40px
 }
-.backGround-img{
-    width:500px;
+
+.backGround-img {
+    width: 500px;
 }
-body{
-    background:linear-gradient(to top left, #FFD372, #FF99D7);
-    color:#333;
+
+body {
+    background: linear-gradient(to top left, #FFD372, #FF99D7);
+    color: #333;
 }
-header{
+
+header {
     text-align: center;
     font-size: 30px;
 }
-main{
+
+main {
     text-align: center;
 }
-footer{
+
+footer {
     text-align: center;
 }
-span{
+
+span {
     color: #CF0A0A;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     height: 0;
 }
-#country{
-    color:#CF0A0A;
+
+#country {
+    color: #CF0A0A;
     font-size: 40;
 }
-.flexWorlds{
-    display:flex;
-    flex-direction: row; /*default however writting it down to uderstan and possibly change*/
-    flex-wrap: wrap; /*default however writting it down to uderstan and possibly change*/
+
+.flexWorlds {
+    display: flex;
+    flex-direction: row;
+    /*default however writting it down to uderstan and possibly change*/
+    flex-wrap: wrap;
+    /*default however writting it down to uderstan and possibly change*/
     justify-content: center;
     margin: 0;
-    padding:10px 300px 10px 300px;
-    gap:40px;
+    padding: 10px 300px 10px 300px;
+    gap: 40px;
     cursor: pointer;
 }
 
-.show-modal{
+.show-modal {
     font-size: 2rem;
     font-weight: 600;
     padding: 1.75rem 3.5rem;
@@ -78,7 +93,7 @@ span{
     color: #444;
     border-radius: 10rem;
     cursor: pointer;
-  }
+}
 
 .close-modal {
     position: absolute;
@@ -89,21 +104,23 @@ span{
     cursor: pointer;
     border: none;
     background: none;
-  }
-  .modal {
+}
+
+.modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%;
-  
+
     background-color: white;
     padding: 6rem;
     border-radius: 5px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
     z-index: 10;
-  }
-  .overlay {
+}
+
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -112,8 +129,9 @@ span{
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(3px);
     z-index: 5;
-  }
-  #start-button{
+}
+
+#start-button {
     font-size: 2rem;
     font-weight: 600;
     padding: 1.75rem 3.5rem;
@@ -123,8 +141,241 @@ span{
     color: #444;
     border-radius: 10rem;
     cursor: pointer;
-  }
-  
-  .selected{
+}
+
+.selected {
     border: solid;
-  }
+}
+
+@media (max-width:650px) {
+    header {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    #country {
+        color: #CF0A0A;
+        font-size: 20px;
+    }
+
+    #start-button {
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 1.75rem 3.5rem;
+        margin: 5rem 2rem;
+        border: none;
+        background-color: #fff;
+        color: #444;
+        border-radius: 10rem;
+        cursor: pointer;
+    }
+
+    .show-modal {
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 1rem 1.5rem;
+        margin: 2rem 2rem;
+        border: none;
+        background-color: #fff;
+        color: #444;
+        border-radius: 10rem;
+        cursor: pointer;
+    }
+
+    .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        background-color: white;
+        padding: 3rem;
+        border-radius: 5px;
+        box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+    .modal-img-sneaky {
+        width: 300px;
+        border-radius: 2rem;
+    }
+}
+@media (max-width:615px) {
+    header {
+        text-align: center;
+        font-size: 15px;
+    }
+    h1{
+        font-size: 0.95rem;
+    }
+
+    #country {
+        color: #CF0A0A;
+        font-size: 15px;
+    }
+
+    #start-button {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 1.75rem 3.5rem;
+        margin: 5rem 2rem;
+        border: none;
+        background-color: #fff;
+        color: #444;
+        border-radius: 10rem;
+        cursor: pointer;
+    }
+
+    .show-modal {
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 1rem 1.5rem;
+        margin: 2rem 2rem;
+        border: none;
+        background-color: #fff;
+        color: #444;
+        border-radius: 10rem;
+        cursor: pointer;
+    }
+
+    .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        background-color: white;
+        padding: 3rem;
+        border-radius: 5px;
+        box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+    .modal-img-sneaky {
+        width: 150px;
+        border-radius: 2rem;
+    }
+    .modal-img {
+        width: 200px;
+        border-radius: 2rem;
+    }
+    
+    .modal-imgMario {
+        width: 150px;
+        border-radius: 2rem;
+    
+    }
+    .flexWorlds {
+        display: flex;
+        flex-direction: row;
+        /*default however writting it down to uderstan and possibly change*/
+        flex-wrap: wrap;
+        /*default however writting it down to uderstan and possibly change*/
+        justify-content: center;
+        margin: 0;
+        padding: 10px 100px 10px 100px;
+        gap: 50px;
+        cursor: pointer;
+    }
+    .modal-img-flex {
+        display: flex;
+        flex-direction: row;
+        /*default however writting it down to uderstan and possibly change*/
+        flex-wrap: wrap;
+        /*default however writting it down to uderstan and possibly change*/
+        justify-content: center;
+        margin: 0;
+        padding: 10px 10px 10px 10px;
+        gap: 10px
+    }
+    
+    
+}
+@media (max-width:390px) {
+    header {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    #country {
+        color: #CF0A0A;
+        font-size: 15px;
+    }
+
+    #start-button {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 1.75rem 3.5rem;
+        margin: 5rem 2rem;
+        border: none;
+        background-color: #fff;
+        color: #444;
+        border-radius: 10rem;
+        cursor: pointer;
+    }
+
+    .show-modal {
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 0.9rem 1.2rem;
+        margin: 1.2rem 1.2rem;
+        border: none;
+        background-color: #fff;
+        color: #444;
+        border-radius: 10rem;
+        cursor: pointer;
+    }
+
+    .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        background-color: white;
+        padding: 3rem;
+        border-radius: 5px;
+        box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+    .modal-img-sneaky {
+        width: 150px;
+        border-radius: 2rem;
+    }
+    .modal-img {
+        width: 200px;
+        border-radius: 2rem;
+    }
+    
+    .modal-imgMario {
+        width: 150px;
+        border-radius: 2rem;
+    
+    }
+    .flexWorlds {
+        display: flex;
+        flex-direction: row;
+        /*default however writting it down to uderstan and possibly change*/
+        flex-wrap: wrap;
+        /*default however writting it down to uderstan and possibly change*/
+        justify-content: center;
+        margin: 0;
+        padding: 10px 10px 10px 10px;
+        gap: 49px;
+        cursor: pointer;
+    }
+    .modal-img-flex {
+        display: flex;
+        flex-direction: row;
+        /*default however writting it down to uderstan and possibly change*/
+        flex-wrap: wrap;
+        /*default however writting it down to uderstan and possibly change*/
+        justify-content: center;
+        margin: 0;
+        padding: 10px 10px 10px 10px;
+        gap: 10px
+    }
+    h1{
+        font-size: 1.3rem;
+    }
+    
+    
+}
