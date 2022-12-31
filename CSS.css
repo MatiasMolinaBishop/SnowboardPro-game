@@ -204,6 +204,16 @@ span {
         text-align: center;
         font-size: 15px;
     }
+    .close-modal {
+        position: absolute;
+        top: 1.4rem;
+        right: 2rem;
+        font-size: 3rem;
+        color: #333;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
     h1{
         font-size: 0.95rem;
     }
@@ -375,6 +385,16 @@ span {
     }
     h1{
         font-size: 1.3rem;
+    }
+    .close-modal {
+        position: absolute;
+        top: 0.9rem;
+        right: 2rem;
+        font-size: 2rem;
+        color: #333;
+        cursor: pointer;
+        border: none;
+        background: none;
     }
     
     
